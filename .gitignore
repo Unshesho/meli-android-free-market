@@ -1,15 +1,51 @@
+# Archivos de sistema de Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Archivos de Android Studio
+.idea/*
+!.idea/codeStyles/Project.xml
+!.idea/codeStyles/codeStyleConfig.xml
+!.idea/workspace.xml
+!.idea/copyright/profiles_settings.xml
+!.idea/inspectionProfiles/*
+!.idea/libraries
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/runConfigurations
+!.idea/vcs.xml
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Archivos de Gradle
+.gradle/
+build/
+*/build/
+
+# Archivos locales de configuración (gradle y sdk)
 local.properties
+gradle.properties
+
+# Archivos de caché
+.cxx/
+.externalNativeBuild/
+
+# Logs de ejecución
+*.log
+
+# Archivos de compilación de Android
+captures/
+output.json
+
+# Archivos generados por Windows
+*.exe
+*.dll
+*.bat
+*.swp
+*.swo
+
+# Archivos temporales de Windows
+*.tmp
+*.temp
