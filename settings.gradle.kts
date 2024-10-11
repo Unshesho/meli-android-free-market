@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "free-market"
 include(":app")
+include(":network")
