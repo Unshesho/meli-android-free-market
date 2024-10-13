@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -48,9 +51,12 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
 
+    //UI Dependencies
+    implementation("com.airbnb.android:lottie:5.1.1")
+
     //DI Dependencies
     implementation("io.insert-koin:koin-core:4.0.0")
-    implementation("io.insert-koin:koin-android4.0.0")
+    implementation("io.insert-koin:koin-android:4.0.0")
 
     //Test Dependencies
     testImplementation("junit:junit:4.13.2")
