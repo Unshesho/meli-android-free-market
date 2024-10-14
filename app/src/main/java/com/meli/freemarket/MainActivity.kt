@@ -2,9 +2,9 @@ package com.meli.freemarket
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.airbnb.lottie.LottieAnimationView
 import com.meli.freemarket.databinding.ActivityMainBinding
-import com.meli.freemarket.features.products.ProductsActivity
+import com.meli.freemarket.features.products.list.ProductsListActivity
+import com.meli.freemarket.features.products.search.SearchActivity
 import com.meli.utils.animations.onAnimationEnd
 
 class MainActivity : AppCompatActivity() {
@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun runAppOnAnimationEnd() = binding?.splashAnimation?.apply {
         onAnimationEnd {
-            goToProducts()
+            goToSearch()
             finish()
         }
     }
 
-    private fun goToProducts() {
-        val intent = ProductsActivity.makeIntent(this)
+    private fun goToSearch() {
+        val intent = SearchActivity.makeIntent(this)
         startActivity(intent)
     }
 
