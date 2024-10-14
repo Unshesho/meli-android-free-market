@@ -9,7 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.meli.uicomponents.databinding.ComponentSearchInputTextBinding
 
 data class AttrsSearchInputText(
-    val hint: String,
+    val hint: String? = null,
+    val searchText: String? = null,
     val onSearch: () -> Unit
 )
 
@@ -26,16 +27,25 @@ class SearchInputText @JvmOverloads constructor(
     }
 
     fun setAttributes(attrs: AttrsSearchInputText) {
-        setHint(attrs)
+        setTexts(attrs)
         setSearchBehavior(attrs)
     }
 
-    private fun setHint(attrs: AttrsSearchInputText) = binding?.apply {
+    fun getSearchText(): String? {
+        binding?.apply {
+            return componentSearchInputText.query.toString()
+        }
+        return null
+    }
+
+    private fun setTexts(attrs: AttrsSearchInputText) = binding?.apply {
         componentSearchInputText.queryHint = attrs.hint
+        componentSearchInputText.setQuery(attrs.searchText, false)
     }
 
     private fun setSearchBehavior(attrs: AttrsSearchInputText) = binding?.apply {
-        componentSearchInputText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        componentSearchInputText.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 attrs.onSearch.invoke()
                 return false
