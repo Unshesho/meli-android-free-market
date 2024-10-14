@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "free-market"
 include(":app")
 include(":network")
+include(":ui-components")

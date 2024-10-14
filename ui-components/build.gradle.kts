@@ -1,20 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.meli.freemarket"
+    namespace = "com.meli.uicomponents"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.meli.freemarket"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     viewBinding {
         enable = true
     }
@@ -40,28 +38,9 @@ android {
 
 dependencies {
 
-    //Modules Dependencies
-    implementation(project(":ui-components"))
-
-    //Core Dependencies
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
-    //Network Dependencies
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-
-    //UI Dependencies
-    implementation("com.airbnb.android:lottie:5.1.1")
-
-    //DI Dependencies
-    implementation("io.insert-koin:koin-core:4.0.0")
-    implementation("io.insert-koin:koin-android:4.0.0")
-
-    //Test Dependencies
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
