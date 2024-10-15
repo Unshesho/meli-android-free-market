@@ -1,10 +1,11 @@
 package com.meli.freemarket.features.products.list.data
 
-import com.meli.freemarket.features.products.ProductsFactory.makeRemoteProduct
-import com.meli.freemarket.features.products.ProductsFactory.makeRemoteProductList
-import com.meli.freemarket.features.products.list.data.remote.model.RemoteProduct
-import com.meli.freemarket.features.products.list.data.remote.model.RemoteProductList
-import com.meli.freemarket.features.products.list.data.source.ProductListRemote
+import com.meli.freemarket.features.products.RemoteProductsFactory.makeRemoteProduct
+import com.meli.freemarket.features.products.RemoteProductsFactory.makeRemoteProductList
+import com.meli.freemarket.features.products.data.ProductRepository
+import com.meli.freemarket.features.products.data.remote.model.RemoteProduct
+import com.meli.freemarket.features.products.data.remote.model.RemoteProductList
+import com.meli.freemarket.features.products.data.source.ProductRemote
 import com.meli.utils.testingtools.randomfactory.RandomFactory.generateRandomString
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -15,8 +16,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ProductListRepositoryTest {
-    private val remote = mockk<ProductListRemote>()
-    private val repository = ProductListRepository(remote)
+    private val remote = mockk<ProductRemote>()
+    private val repository = ProductRepository(remote)
 
     @Test
     fun `given product, when getProductList, then emit`() = runBlocking {
