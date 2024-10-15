@@ -1,13 +1,13 @@
-package com.meli.freemarket.features.products.list.data
+package com.meli.freemarket.features.products.data
 
-import com.meli.freemarket.features.products.list.data.remote.model.RemoteProduct
-import com.meli.freemarket.features.products.list.data.remote.model.RemoteProductList
-import com.meli.freemarket.features.products.list.data.source.ProductListRemote
+import com.meli.freemarket.features.products.data.remote.model.RemoteProduct
+import com.meli.freemarket.features.products.data.remote.model.RemoteProductList
+import com.meli.freemarket.features.products.data.source.ProductRemote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class ProductListRepository(
-    private val remote: ProductListRemote
+class ProductRepository(
+    private val remote: ProductRemote
 ) {
     fun getProductList(product: String): Flow<RemoteProductList> = flow {
         val productList = remote.getProductList(product)
