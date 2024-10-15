@@ -53,6 +53,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     //UI Dependencies
     implementation("com.airbnb.android:lottie:5.1.1")
@@ -65,4 +66,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    testImplementation("io.mockk:mockk:1.12.3")
 }
