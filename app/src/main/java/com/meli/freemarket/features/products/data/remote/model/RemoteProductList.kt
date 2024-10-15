@@ -1,4 +1,4 @@
-package com.meli.freemarket.features.products.list.data.remote.model
+package com.meli.freemarket.features.products.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
