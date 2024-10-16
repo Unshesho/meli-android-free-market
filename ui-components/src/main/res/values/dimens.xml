@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  Radius -->
     <dimen name="ui_radius_general">4dp</dimen>
-
+    <!--  margin -->
+    <dimen name="ui_margin_9">9dp</dimen>
+    <dimen name="ui_margin_12">12dp</dimen>
+    <!--  Font -->
+    <dimen name="ui_header_24">24sp</dimen>
+    <dimen name="ui_header_20">20sp</dimen>
+    <dimen name="ui_body_18">18sp</dimen>
+    <dimen name="ui_body_14">14sp</dimen>
 </resources>
