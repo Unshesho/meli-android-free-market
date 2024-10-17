@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meli.freemarket.features.products.data.ProductRepository
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUIntent
+import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUIntent.SeeProductDetailUIntent
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates.DefaultUiState
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates.DisplayProductDetailUiState
@@ -48,8 +49,7 @@ class ProductDetailViewModel(
 
     private fun ProductDetailUIntent.handleIntent(): Flow<ProductDetailUiStates> =
         when (this) {
-            is ProductDetailUIntent.SearchProductIntent -> getProductDetail(productText)
-            is ProductDetailUIntent.SeeProductDetailUIntent -> TODO()
+            is SeeProductDetailUIntent -> getProductDetail(productId)
         }
 
     private fun getProductDetail(productId: String?) = flow<ProductDetailUiStates> {
