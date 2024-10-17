@@ -1,16 +1,16 @@
-package com.meli.freemarket.features.products.list.presentation
+package com.meli.freemarket.features.products.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meli.freemarket.features.products.data.ProductRepository
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent.RefreshUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent.SearchProductUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates.DisplayProductListUiState
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates.ErrorUiState
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates.LoadingUiState
-import com.meli.freemarket.features.products.list.presentation.mapper.ProductListMapper
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.SearchProductUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.DisplayProductListUiState
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.ErrorUiState
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.LoadingUiState
+import com.meli.freemarket.features.products.presentation.list.mapper.ProductListMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.meli.freemarket.features.products.list
+package com.meli.freemarket.features.products.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.ActivityProductsBinding
-import com.meli.freemarket.features.products.list.ui.ProductListFragment
+import com.meli.freemarket.features.products.ui.list.ProductListFragment
 import com.meli.uicomponents.components.inputs.AttrsSearchInputText
 import org.koin.androidx.scope.activityScope
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.scope.Scope
 
-class ProductsListActivity : AppCompatActivity(), KoinScopeComponent {
+class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
     private var binding: ActivityProductsBinding? = null
 
     override val scope: Scope by activityScope()
@@ -56,7 +56,7 @@ class ProductsListActivity : AppCompatActivity(), KoinScopeComponent {
     companion object {
         const val SEARCH = "SEARCH"
         fun makeIntent(context: Context, productText: String?): Intent =
-            Intent(context, ProductsListActivity::class.java).also {
+            Intent(context, ProductsActivity::class.java).also {
                 it.putExtra(SEARCH, productText)
             }
     }

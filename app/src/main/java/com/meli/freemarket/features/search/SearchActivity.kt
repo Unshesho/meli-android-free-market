@@ -1,4 +1,4 @@
-package com.meli.freemarket.features.products.search
+package com.meli.freemarket.features.search
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.ActivitySearchBinding
-import com.meli.freemarket.features.products.list.ProductsListActivity
+import com.meli.freemarket.features.products.ui.ProductsActivity
 import com.meli.uicomponents.components.inputs.AttrsSearchInputText
 
 class SearchActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class SearchActivity : AppCompatActivity() {
                 hint = getString(R.string.search_for_products),
                 onSearch = {
                     val intent =
-                        ProductsListActivity.makeIntent(this@SearchActivity, search.getSearchText())
+                        ProductsActivity.makeIntent(this@SearchActivity, search.getSearchText())
                     startActivity(intent)
                 }
             )

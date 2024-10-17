@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.meli.freemarket.features.products.list.ui.ProductListFragment"
+        android:name="com.meli.freemarket.features.products.ui.list.ProductListFragment"
         tools:layout="@layout/fragment_product_list" />
 
 </navigation>

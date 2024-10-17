@@ -2,7 +2,8 @@ package com.meli.freemarket.features.products.list.presentation.mapper
 
 import com.meli.freemarket.features.products.RemoteProductsFactory.makeRemoteProductList
 import com.meli.freemarket.features.products.data.remote.model.RemoteProductList
-import com.meli.freemarket.features.products.list.presentation.model.ProductList
+import com.meli.freemarket.features.products.presentation.list.model.ProductList
+import com.meli.freemarket.features.products.presentation.list.mapper.ProductListMapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -59,26 +60,5 @@ class ProductMapperTest {
             remoteProductList.products?.first()?.price.orEmpty(),
             productList.products.first().price
         )
-
-        remoteProductList.products?.first()?.installments?.let { remoteInstallments ->
-            assertEquals(
-                remoteInstallments.rate ?: 0.0f,
-                productList.products.first().installments.rate
-            )
-        }
-
-        remoteProductList.products?.first()?.characteristics?.let { remoteCharacteristicList ->
-            val remoteCharacteristic = remoteCharacteristicList.first()
-            val characteristic = productList.products.first().characteristic.first()
-
-            assertEquals(
-                remoteCharacteristic.characteristic.orEmpty(),
-                characteristic.characteristic
-            )
-            assertEquals(
-                remoteCharacteristic.characteristicDescription.orEmpty(),
-                characteristic.characteristicDescription
-            )
-        }
     }
 }

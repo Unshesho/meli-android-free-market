@@ -1,6 +1,6 @@
-package com.meli.freemarket.features.products.list.presentation.events
+package com.meli.freemarket.features.products.presentation.list.events
 
-import com.meli.freemarket.features.products.list.presentation.model.ProductList
+import com.meli.freemarket.features.products.presentation.list.model.ProductList
 
 sealed class ProductUiStates {
     data class DisplayProductListUiState(val productList: ProductList) : ProductUiStates()
