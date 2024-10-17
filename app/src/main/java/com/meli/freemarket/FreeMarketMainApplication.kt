@@ -1,7 +1,7 @@
 package com.meli.freemarket
 
 import android.app.Application
-import com.meli.freemarket.features.products.list.di.productListModule
+import com.meli.freemarket.features.products.di.productListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

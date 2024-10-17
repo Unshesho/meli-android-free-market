@@ -1,4 +1,4 @@
-package com.meli.freemarket.features.products.list.ui
+package com.meli.freemarket.features.products.ui.list
 
 import android.os.Bundle
 import android.util.Log
@@ -9,15 +9,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.meli.freemarket.databinding.FragmentProductListBinding
-import com.meli.freemarket.features.products.list.ProductsListActivity.Companion.SEARCH
-import com.meli.freemarket.features.products.list.presentation.ProductListViewModel
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent.RefreshUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUIntent.SearchProductUIntent
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates.DisplayProductListUiState
-import com.meli.freemarket.features.products.list.presentation.events.ProductUiStates.ErrorUiState
-import com.meli.freemarket.features.products.list.presentation.model.ProductList
+import com.meli.freemarket.features.products.ui.ProductsActivity.Companion.SEARCH
+import com.meli.freemarket.features.products.presentation.ProductListViewModel
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.SearchProductUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.DisplayProductListUiState
+import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.ErrorUiState
+import com.meli.freemarket.features.products.presentation.list.model.ProductList
 import com.meli.uicomponents.components.cards.AttrsThumbnailCard
 import com.meli.uicomponents.groupcomponent.cardlist.AttrsThumbnailCardListComponent
 import kotlinx.coroutines.flow.Flow
@@ -100,7 +100,7 @@ class ProductListFragment : Fragment() {
                     AttrsThumbnailCard(
                         title = product.name,
                         price = product.price,
-                        rate = product.installments.rate,
+                        rate = product.rate,
                         imageUrl = product.image
                     )
                 }

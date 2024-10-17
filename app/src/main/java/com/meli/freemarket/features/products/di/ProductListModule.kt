@@ -1,14 +1,13 @@
-package com.meli.freemarket.features.products.list.di
+package com.meli.freemarket.features.products.di
 
 import com.meli.freemarket.features.products.data.ProductRepository
 import com.meli.freemarket.features.products.data.remote.ProductRemoteImpl
 import com.meli.freemarket.features.products.data.remote.retrofit.ProductWebService
 import com.meli.freemarket.features.products.data.source.ProductRemote
-import com.meli.freemarket.features.products.list.presentation.ProductListViewModel
-import com.meli.freemarket.features.products.list.presentation.mapper.ProductListMapper
+import com.meli.freemarket.features.products.presentation.ProductListViewModel
+import com.meli.freemarket.features.products.presentation.list.mapper.ProductListMapper
 import com.meli.network.retrofit.WebServiceFactory
 import kotlinx.coroutines.Dispatchers
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 

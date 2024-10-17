@@ -3,8 +3,7 @@ package com.meli.freemarket
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.meli.freemarket.databinding.ActivityMainBinding
-import com.meli.freemarket.features.products.list.ProductsListActivity
-import com.meli.freemarket.features.products.search.SearchActivity
+import com.meli.freemarket.features.search.SearchActivity
 import com.meli.utils.animations.onAnimationEnd
 
 class MainActivity : AppCompatActivity() {
