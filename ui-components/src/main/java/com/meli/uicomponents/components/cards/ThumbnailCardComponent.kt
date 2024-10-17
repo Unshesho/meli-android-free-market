@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.meli.uicomponents.R
 import com.meli.uicomponents.databinding.UiComponentThumbnailCardBinding
+import com.squareup.picasso.Picasso
 
 data class AttrsThumbnailCard(
     val title: String? = null,
     val rate: Float? = null,
     val price: String? = null,
-    val key: String? = null
+    val key: String? = null,
+    val imageUrl: String? = null
 )
 
 class ThumbnailCardComponent @JvmOverloads constructor(
@@ -32,12 +34,13 @@ class ThumbnailCardComponent @JvmOverloads constructor(
     fun setAttributes(attrs: AttrsThumbnailCard) {
         setTexts(attrs)
         setRateStars(attrs)
+        setThumbnail(attrs)
     }
 
     private fun setTexts(attrs: AttrsThumbnailCard) = binding?.apply {
-        val rate = (attrs.rate?.div(10)).toString()
-        componentThumbnailCardProductName.text = "$${attrs.price}"
-        componentThumbnailCardPrice.text = attrs.price
+        val rate = String.format("%.1f", attrs.rate?.div(10))
+        componentThumbnailCardProductName.text = attrs.title
+        componentThumbnailCardPrice.text = "$${attrs.price}"
         componentThumbnailCardRate.text = "Rate $rate"
     }
 
@@ -46,5 +49,15 @@ class ThumbnailCardComponent @JvmOverloads constructor(
         componentThumbnailCardRatingBar.rating = rateStars ?: 0.0f
         componentThumbnailCardRatingBar.progressTintList =
             ColorStateList.valueOf(resources.getColor(R.color.ui_primary_blue))
+    }
+
+    private fun setThumbnail(attrs: AttrsThumbnailCard) = binding?.apply {
+        Picasso.get()
+            .load(attrs.imageUrl)
+            .fit()
+            .centerCrop()
+            .placeholder(R.drawable.ui_ic_load)
+            .error(R.drawable.ui_ic_image_placeholder)
+            .into(componentThumbnailCardImageView)
     }
 }

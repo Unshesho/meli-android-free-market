@@ -31,6 +31,7 @@ class ThumbnailCardListComponent @JvmOverloads constructor(
     }
 
     private fun setAdapter(attrs: AttrsThumbnailCardListComponent) = binding?.apply {
-        uiComponentThumbnailCardListRecyclerView.adapter = ThumbnailCardListAdapter(attrs)
+        uiComponentThumbnailCardListRecyclerView.adapter =
+            ThumbnailCardListAdapter(attrs.productList, attrs.onClick)
     }
 }

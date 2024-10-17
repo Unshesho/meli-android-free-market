@@ -3,4 +3,4 @@
     android:id="@+id/item_thumbnail_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/ui_margin_9" />
+    android:layout_marginVertical="@dimen/ui_margin_20" />

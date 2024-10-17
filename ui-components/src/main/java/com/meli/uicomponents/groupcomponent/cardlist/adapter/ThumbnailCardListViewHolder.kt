@@ -8,10 +8,10 @@ import com.meli.uicomponents.groupcomponent.cardlist.AttrsThumbnailCardListCompo
 class ThumbnailCardListViewHolder(private val binding: UiItemThumbnailCardBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(attrs: AttrsThumbnailCardListComponent, position: Int) =
+    fun bind(attrs: AttrsThumbnailCard, onClick: (String?) -> Unit) =
         binding.apply {
-            val product = attrs.productList[position]
-
+            itemThumbnailCard.setAttributes(attrs)
+            setListener(attrs, onClick)
         }
 
     private fun setListener(
@@ -19,7 +19,7 @@ class ThumbnailCardListViewHolder(private val binding: UiItemThumbnailCardBindin
         onClick: (String?) -> Unit
     ) =
         binding.apply {
-            itemThumbnailCard.setOnClickListener{
+            itemThumbnailCard.setOnClickListener {
                 onClick.invoke(attrs.key)
             }
         }

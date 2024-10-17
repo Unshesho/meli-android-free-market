@@ -5,6 +5,7 @@
     <!--  margin -->
     <dimen name="ui_margin_9">9dp</dimen>
     <dimen name="ui_margin_12">12dp</dimen>
+    <dimen name="ui_margin_20">20dp</dimen>
     <!--  Font -->
     <dimen name="ui_header_24">24sp</dimen>
     <dimen name="ui_header_20">20sp</dimen>

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface ProductWebService {
     @GET("search")
     suspend fun getProductList(
-        @Query("product") product: String
+        @Query("q") product: String
     ): RemoteProductList
 
     @GET("items/{product-id}")
