@@ -6,7 +6,7 @@ import javax.net.SocketFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteWebService<TRetrofitWebService> {
 
@@ -45,7 +45,7 @@ class RemoteWebService<TRetrofitWebService> {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(tClass)
 }

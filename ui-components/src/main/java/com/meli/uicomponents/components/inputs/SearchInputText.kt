@@ -6,12 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.meli.uicomponents.databinding.ComponentSearchInputTextBinding
+import com.meli.uicomponents.databinding.UiComponentSearchInputTextBinding
 
 data class AttrsSearchInputText(
     val hint: String? = null,
     val searchText: String? = null,
-    val onSearch: () -> Unit
+    val onSearch: (String) -> Unit
 )
 
 class SearchInputText @JvmOverloads constructor(
@@ -19,11 +19,11 @@ class SearchInputText @JvmOverloads constructor(
     private val attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentSearchInputTextBinding? = null
+    private var binding: UiComponentSearchInputTextBinding? = null
 
     init {
         val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        binding = ComponentSearchInputTextBinding.inflate(inflater, this)
+        binding = UiComponentSearchInputTextBinding.inflate(inflater, this)
     }
 
     fun setAttributes(attrs: AttrsSearchInputText) {
@@ -47,7 +47,7 @@ class SearchInputText @JvmOverloads constructor(
         componentSearchInputText.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                attrs.onSearch.invoke()
+                attrs.onSearch.invoke(p0.orEmpty())
                 return false
             }
 
@@ -55,5 +55,10 @@ class SearchInputText @JvmOverloads constructor(
                 return false
             }
         })
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        binding?.componentSearchInputText?.setOnQueryTextListener(null)
     }
 }

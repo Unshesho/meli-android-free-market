@@ -11,7 +11,13 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            library("jakarta-activation", "jakarta.activation:jakarta.activation-api:1.2.1")
+        }
+    }
 }
+
 
 rootProject.name = "free-market"
 include(":app")

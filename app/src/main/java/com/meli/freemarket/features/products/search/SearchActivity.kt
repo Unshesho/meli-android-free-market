@@ -28,10 +28,9 @@ class SearchActivity : AppCompatActivity() {
             attrs = AttrsSearchInputText(
                 hint = getString(R.string.search_for_products),
                 onSearch = {
-                    val intent = ProductsListActivity.makeIntent(this@SearchActivity)
-                    intent.putExtra("SEARCH", search.getSearchText())
+                    val intent =
+                        ProductsListActivity.makeIntent(this@SearchActivity, search.getSearchText())
                     startActivity(intent)
-                    finish()
                 }
             )
         )
