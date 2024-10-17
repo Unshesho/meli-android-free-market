@@ -49,3 +49,4 @@ output.json
 # Archivos temporales de Windows
 *.tmp
 *.temp
+/.idea
