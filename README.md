@@ -88,3 +88,4 @@ Dentro de la carpeta `di` del dominio de cada feature, se pueden encontrar una s
 3. **Test Unitarios en network y utils**:  Implementar pruebas unitarias en los módulos de network y utils para asegurar el buen funcionamiento de estas herramientas y funcionalidades.
 4. **Implementación de Tests de Integración y Tests Instrumentados**: Añadir pruebas de implementación y pruebas instrumentadas para verificar el comportamiento de la aplicación en un entorno más realista y asegurar que las funcionalidades estén correctamente integradas.
 5. **Configuraciones de ProGuard**: Añadir configuraciones para ProGuard con el fin de ofuscar el código en la versión de release, mejorando la seguridad y reduciendo el tamaño del APK.
+6. **Aumento del Coverage de Tests**: Aumentar la cobertura de pruebas en aquellas clases que aún no han sido testadas.
