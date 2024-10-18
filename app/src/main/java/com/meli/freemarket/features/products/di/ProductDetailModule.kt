@@ -1,6 +1,6 @@
 package com.meli.freemarket.features.products.di
 
-import com.meli.freemarket.features.products.navigation.ProductNavigator
+import com.meli.freemarket.features.products.ui.navigation.ProductNavigator
 import com.meli.freemarket.features.products.presentation.ProductDetailViewModel
 import com.meli.freemarket.features.products.presentation.detail.mapper.ProductDetailMapper
 import kotlinx.coroutines.Dispatchers

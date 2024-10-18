@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.FragmentProductListBinding
-import com.meli.freemarket.features.products.navigation.ProductNavigator
+import com.meli.freemarket.features.products.ui.navigation.ProductNavigator
 import com.meli.freemarket.features.products.presentation.ProductListViewModel
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent

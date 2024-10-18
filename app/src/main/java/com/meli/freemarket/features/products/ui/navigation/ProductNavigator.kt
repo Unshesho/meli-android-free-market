@@ -1,4 +1,4 @@
-package com.meli.freemarket.features.products.navigation
+package com.meli.freemarket.features.products.ui.navigation
 
 import android.view.View
 import com.meli.freemarket.features.products.ui.list.ProductListFragmentDirections
