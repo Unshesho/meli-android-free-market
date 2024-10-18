@@ -11,7 +11,7 @@ import com.meli.uicomponents.groupcomponent.cardlist.adapter.ThumbnailCardListAd
 
 data class AttrsThumbnailCardListComponent(
     val productList: List<AttrsThumbnailCard>,
-    val onClick: (String?) -> Unit = {}
+    val onClick: (String?, Float?) -> Unit = { _, _ -> }
 )
 
 class ThumbnailCardListComponent @JvmOverloads constructor(

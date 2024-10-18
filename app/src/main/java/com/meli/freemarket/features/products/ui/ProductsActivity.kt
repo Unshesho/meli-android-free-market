@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.ActivityProductsBinding
+import com.meli.freemarket.features.products.ui.detail.ProductDetailFragment
 import com.meli.freemarket.features.products.ui.list.ProductListFragment
 import com.meli.uicomponents.components.inputs.AttrsSearchInputText
 import org.koin.androidx.scope.activityScope
@@ -26,6 +28,10 @@ class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
 
     override fun onStart() {
         super.onStart()
+        setupListFragment()
+    }
+
+    private fun setupListFragment() {
         binding?.activityProductsSearch?.apply {
             val searchText = intent.getStringExtra(SEARCH)
             setAttributes(
@@ -33,10 +39,14 @@ class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
                     hint = getString(R.string.search_for_products),
                     searchText = searchText.orEmpty(),
                     onSearch = {
-                        /*TODO - Falta hacer la logica de que si estoy en Detail
-                           navegue a List de nuevo (pop back stack + refresh)*/
+                        intent.putExtra(SEARCH, it)
                         when (val fragment = getCurrentFragment()) {
                             is ProductListFragment -> fragment.refresh(it)
+                            is ProductDetailFragment -> {
+                                fragment.findNavController().navigateUp()
+                                (getCurrentFragment() as? ProductListFragment)?.refresh(it)
+                            }
+
                             else -> {}
                         }
                     }

@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.products.ui.ProductsActivity" />
+        <activity android:name=".features.products.ui.ProductsActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".features.search.SearchActivity" />
     </application>
 

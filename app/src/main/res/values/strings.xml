@@ -3,4 +3,9 @@
     <string name="welcome">Bienvenido</string>
     <string name="what_are_you_looking_for">¿Qué estás buscando?</string>
     <string name="search_for_products">Buscar nombre, producto, etc</string>
+    <string name="buy">Comprar</string>
+    <string name="characteristics">Características</string>
+    <string name="we_have_a_problem">¡Ups! Tuvimos un problema</string>
+    <string name="we_are_sorry_try_again">Sentimos la molestia, por favor vuelve a intentar</string>
+    <string name="retry">Reintentar</string>
 </resources>

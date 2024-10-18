@@ -1,24 +1,27 @@
 package com.meli.freemarket.features.products.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.meli.freemarket.R
 import com.meli.freemarket.databinding.FragmentProductListBinding
-import com.meli.freemarket.features.products.ui.ProductsActivity.Companion.SEARCH
+import com.meli.freemarket.features.products.navigation.ProductNavigator
 import com.meli.freemarket.features.products.presentation.ProductListViewModel
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RetryIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.SearchProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.DisplayProductListUiState
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.ErrorUiState
 import com.meli.freemarket.features.products.presentation.list.model.ProductList
+import com.meli.freemarket.features.products.ui.ProductsActivity.Companion.SEARCH
 import com.meli.uicomponents.components.cards.AttrsThumbnailCard
+import com.meli.uicomponents.components.template.AttrsErrorTemplate
 import com.meli.uicomponents.groupcomponent.cardlist.AttrsThumbnailCardListComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -28,11 +31,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductListFragment : Fragment() {
     private var binding: FragmentProductListBinding? = null
     private val viewModel: ProductListViewModel by viewModel()
+    private val navigator: ProductNavigator by inject()
     private val userIntents: MutableSharedFlow<ProductUIntent> = MutableSharedFlow()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +54,13 @@ class ProductListFragment : Fragment() {
         if (binding == null) binding =
             FragmentProductListBinding.inflate(inflater, container, false)
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (viewModel.uiStates().value as? DisplayProductListUiState)?.let {
+            showContent(it.productList)
+        }
     }
 
     fun refresh(productText: String) {
@@ -81,10 +93,11 @@ class ProductListFragment : Fragment() {
         when (uiStates) {
             is DisplayProductListUiState -> showContent(uiStates.productList)
             is ErrorUiState -> {
-                Log.d("SHESHO", "eerror: ${uiStates.error}")
-            } //TODO: MOSTRAR ERROR
+                showError()
+            }
+
             ProductUiStates.LoadingUiState -> showLoading()
-            else -> {}
+            ProductUiStates.DefaultUiState -> {}
         }
     }
 
@@ -101,9 +114,34 @@ class ProductListFragment : Fragment() {
                         title = product.name,
                         price = product.price,
                         rate = product.rate,
-                        imageUrl = product.image
+                        imageUrl = product.image,
+                        key = product.id
+                    )
+                },
+                onClick = { productId, productRate ->
+                    navigator.goToProductDetail(
+                        view = view,
+                        productId = productId.orEmpty(),
+                        productRate = productRate ?: 0.0f
                     )
                 }
+            )
+        )
+    }
+
+    private fun showError() = binding?.apply {
+        hideAll()
+        fragmentProductListErrorTemplate.isVisible = true
+        setErrorTemplate()
+    }
+
+    private fun setErrorTemplate() = binding?.apply {
+        fragmentProductListErrorTemplate.setAttributes(
+            attrs = AttrsErrorTemplate(
+                title = context?.resources?.getString(R.string.we_have_a_problem),
+                description = context?.resources?.getString(R.string.we_are_sorry_try_again),
+                textButton = context?.resources?.getString(R.string.retry),
+                onClick = { emit(RetryIntent(getProductText().orEmpty())) }
             )
         )
     }
@@ -115,6 +153,7 @@ class ProductListFragment : Fragment() {
     private fun hideAll() = binding?.apply {
         fragmentProductListThumbnailList.isVisible = false
         fragmentComponentLoader.isVisible = false
+        fragmentProductListErrorTemplate.isVisible = false
     }
 
     private fun emit(intent: ProductUIntent) {
@@ -123,8 +162,8 @@ class ProductListFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding = null
     }
 }

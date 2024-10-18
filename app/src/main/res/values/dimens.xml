@@ -6,6 +6,8 @@
     <dimen name="margin_9">9dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <!--  Font -->
+    <dimen name="header_32">32sp</dimen>
+    <dimen name="header_24">24sp</dimen>
     <dimen name="header_20">20sp</dimen>
     <dimen name="body_18">18sp</dimen>
 </resources>

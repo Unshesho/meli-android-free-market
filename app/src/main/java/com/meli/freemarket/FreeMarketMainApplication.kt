@@ -1,6 +1,8 @@
 package com.meli.freemarket
 
 import android.app.Application
+import com.meli.freemarket.features.products.di.productDataModule
+import com.meli.freemarket.features.products.di.productDetailModule
 import com.meli.freemarket.features.products.di.productListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -12,7 +14,13 @@ class FreeMarketMainApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@FreeMarketMainApplication)
-            modules(listOf(productListModule))
+            modules(
+                listOf(
+                    productDataModule,
+                    productListModule,
+                    productDetailModule
+                )
+            )
         }
     }
 }

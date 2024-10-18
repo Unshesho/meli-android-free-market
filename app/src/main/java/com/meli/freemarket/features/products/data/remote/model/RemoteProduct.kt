@@ -6,6 +6,7 @@ data class RemoteProduct(
     @SerializedName("id") val id: String? = null,
     @SerializedName("title") val name: String? = null,
     @SerializedName("thumbnail") val image: String? = null,
+    @SerializedName("pictures") val picture: List<RemotePicture>? = null,
     @SerializedName("price") val price: String? = null,
     @SerializedName("installments") val installments: RemoteInstallments? = null,
     @SerializedName("attributes") val characteristics: List<RemoteCharacteristic>? = null

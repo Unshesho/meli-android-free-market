@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/error_template_animation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="36dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/free_market_error" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <TextView
+        android:id="@+id/error_template_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ui_margin_20"
+        android:gravity="center"
+        android:textSize="@dimen/ui_header_20"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <TextView
+        android:id="@+id/error_template_error_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ui_margin_9"
+        android:gravity="center"
+        android:textSize="@dimen/ui_body_16"
+        app:layout_constraintTop_toBottomOf="@id/error_template_Title" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/error_template_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ui_margin_20"
+        android:backgroundTint="@color/ui_primary_blue"
+        app:cornerRadius="@dimen/ui_radius_general"
+        app:layout_constraintTop_toBottomOf="@id/error_template_error_description" />
+
+</merge>

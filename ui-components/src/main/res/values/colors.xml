@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ui_primary_blue">#6D9BFB</color>
+    <color name="ui_sky_blue">#E1F9FF</color>
 </resources>

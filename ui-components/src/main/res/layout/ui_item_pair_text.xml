@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.meli.uicomponents.components.view.PairTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ui_item_pair_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</com.meli.uicomponents.components.view.PairTextView>

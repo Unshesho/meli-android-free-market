@@ -10,5 +10,6 @@
     <dimen name="ui_header_24">24sp</dimen>
     <dimen name="ui_header_20">20sp</dimen>
     <dimen name="ui_body_18">18sp</dimen>
+    <dimen name="ui_body_16">16sp</dimen>
     <dimen name="ui_body_14">14sp</dimen>
 </resources>

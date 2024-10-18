@@ -8,6 +8,23 @@
     <fragment
         android:id="@+id/productListFragment"
         android:name="com.meli.freemarket.features.products.ui.list.ProductListFragment"
-        tools:layout="@layout/fragment_product_list" />
+        tools:layout="@layout/fragment_product_list">
+
+        <action
+            android:id="@+id/from_product_list_to_detail"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.meli.freemarket.features.products.ui.detail.ProductDetailFragment">
+        <argument
+            android:name="productId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="productRate"
+            app:argType="float"/>
+    </fragment>
 
 </navigation>
