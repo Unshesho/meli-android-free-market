@@ -3,4 +3,6 @@
     <string name="welcome">Bienvenido</string>
     <string name="what_are_you_looking_for">¿Qué estás buscando?</string>
     <string name="search_for_products">Buscar nombre, producto, etc</string>
+    <string name="buy">Comprar</string>
+    <string name="characteristics">Características</string>
 </resources>

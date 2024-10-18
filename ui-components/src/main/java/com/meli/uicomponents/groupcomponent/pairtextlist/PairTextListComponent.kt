@@ -25,7 +25,7 @@ class PairTextListComponent @JvmOverloads constructor(
         binding = UiGroupComponentPairTextListBinding.inflate(inflater, this)
     }
 
-    private fun setAttributes(attrs: AttrsPairTextListComponent) {
+    fun setAttributes(attrs: AttrsPairTextListComponent) {
         setAdapter(attrs)
     }
 

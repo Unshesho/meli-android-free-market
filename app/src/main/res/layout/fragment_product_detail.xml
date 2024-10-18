@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_product_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/fragment_product_detail_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_product_detail_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_product_detail_rating_bar"
+                app:layout_constraintStart_toStartOf="@id/fragment_product_detail_rating_bar"
+                app:layout_constraintTop_toTopOf="@id/fragment_product_detail_rating_bar" />
+
+            <RatingBar
+                android:id="@+id/fragment_product_detail_rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:scaleX="0.4"
+                android:scaleY="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_product_detail_image_view" />
+
+            <TextView
+                android:id="@+id/fragment_product_detail_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/header_24"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/fragment_product_detail_rating_bar" />
+
+            <TextView
+                android:id="@+id/fragment_product_detail_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_margin_9"
+                android:textSize="@dimen/header_32"
+                app:layout_constraintTop_toBottomOf="@id/fragment_product_detail_product_name" />
+
+            <TextView
+                android:id="@+id/fragment_product_detail_characteristic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_margin_20"
+                android:textSize="@dimen/body_18"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/fragment_product_detail_price" />
+
+            <com.meli.uicomponents.groupcomponent.pairtextlist.PairTextListComponent
+                android:id="@+id/fragment_product_detail_characteristic_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_margin_9"
+                app:layout_constraintTop_toBottomOf="@id/fragment_product_detail_characteristic" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.meli.uicomponents.components.loader.LoaderComponent
+        android:id="@+id/fragment_product_detail_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</FrameLayout>

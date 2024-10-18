@@ -3,11 +3,13 @@ package com.meli.freemarket.features.products.data.remote.retrofit
 import com.meli.freemarket.features.products.data.remote.model.RemoteProduct
 import com.meli.freemarket.features.products.data.remote.model.RemoteProductList
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ProductWebService {
-    @GET("search")
+    @GET("sites/MLA/search")
     suspend fun getProductList(
         @Query("q") product: String
     ): RemoteProductList

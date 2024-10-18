@@ -8,7 +8,7 @@ import com.meli.uicomponents.databinding.UiItemThumbnailCardBinding
 
 class ThumbnailCardListAdapter(
     private val list: List<AttrsThumbnailCard>,
-    private val onClick: (String?) -> Unit
+    private val onClick: (String?, Float?) -> Unit = { _, _ -> }
 ) :
     RecyclerView.Adapter<ThumbnailCardListViewHolder>() {
 

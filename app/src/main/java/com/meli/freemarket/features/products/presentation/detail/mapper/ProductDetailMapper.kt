@@ -10,7 +10,7 @@ class ProductDetailMapper {
         name = name.orEmpty(),
         price = price.orEmpty(),
         rate = installments?.rate ?: 0.0f,
-        imageUrl = image.orEmpty(),
+        imageUrl = picture?.first()?.pictureUrl.orEmpty(),
         characteristic = characteristics?.map { it.toCharacteristic() } ?: emptyList()
     )
 

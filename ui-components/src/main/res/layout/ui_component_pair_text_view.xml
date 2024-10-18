@@ -15,12 +15,12 @@
 
     <TextView
         android:id="@+id/component_pair_text_view_key"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ui_margin_9"
-        android:text="Batería"
+        android:padding="@dimen/ui_margin_9"
         android:textSize="@dimen/ui_body_16"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,8 +28,7 @@
         android:id="@+id/component_pair_text_view_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ui_margin_9"
-        android:text="2000 mA"
+        android:padding="@dimen/ui_margin_9"
         android:textSize="@dimen/ui_body_16"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
