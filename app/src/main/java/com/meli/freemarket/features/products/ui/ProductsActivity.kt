@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.ActivityProductsBinding
@@ -40,8 +39,7 @@ class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
                     hint = getString(R.string.search_for_products),
                     searchText = searchText.orEmpty(),
                     onSearch = {
-                        /*TODO - Falta hacer la logica de que si estoy en Detail
-                           navegue a List de nuevo (pop back stack + refresh)*/
+                        intent.putExtra(SEARCH, it)
                         when (val fragment = getCurrentFragment()) {
                             is ProductListFragment -> fragment.refresh(it)
                             is ProductDetailFragment -> {

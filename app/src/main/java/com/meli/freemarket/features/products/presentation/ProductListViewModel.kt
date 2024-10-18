@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.meli.freemarket.features.products.data.ProductRepository
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RetryIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.SearchProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.DisplayProductListUiState
@@ -51,6 +52,7 @@ class ProductListViewModel(
         when (this) {
             is SearchProductUIntent -> getProductList(product)
             is RefreshUIntent -> getProductList(product)
+            is RetryIntent -> getProductList(product)
         }
 
     private fun getProductList(product: String?) = flow<ProductUiStates> {

@@ -1,25 +1,27 @@
 package com.meli.freemarket.features.products.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.meli.freemarket.R
 import com.meli.freemarket.databinding.FragmentProductListBinding
 import com.meli.freemarket.features.products.navigation.ProductNavigator
-import com.meli.freemarket.features.products.ui.ProductsActivity.Companion.SEARCH
 import com.meli.freemarket.features.products.presentation.ProductListViewModel
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RefreshUIntent
+import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.RetryIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUIntent.SearchProductUIntent
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.DisplayProductListUiState
 import com.meli.freemarket.features.products.presentation.list.events.ProductUiStates.ErrorUiState
 import com.meli.freemarket.features.products.presentation.list.model.ProductList
+import com.meli.freemarket.features.products.ui.ProductsActivity.Companion.SEARCH
 import com.meli.uicomponents.components.cards.AttrsThumbnailCard
+import com.meli.uicomponents.components.template.AttrsErrorTemplate
 import com.meli.uicomponents.groupcomponent.cardlist.AttrsThumbnailCardListComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -91,8 +93,9 @@ class ProductListFragment : Fragment() {
         when (uiStates) {
             is DisplayProductListUiState -> showContent(uiStates.productList)
             is ErrorUiState -> {
-                Log.d("SHESHO", "eerror: ${uiStates.error}")
+                showError()
             }
+
             ProductUiStates.LoadingUiState -> showLoading()
             ProductUiStates.DefaultUiState -> {}
         }
@@ -126,6 +129,23 @@ class ProductListFragment : Fragment() {
         )
     }
 
+    private fun showError() = binding?.apply {
+        hideAll()
+        fragmentProductListErrorTemplate.isVisible = true
+        setErrorTemplate()
+    }
+
+    private fun setErrorTemplate() = binding?.apply {
+        fragmentProductListErrorTemplate.setAttributes(
+            attrs = AttrsErrorTemplate(
+                title = context?.resources?.getString(R.string.we_have_a_problem),
+                description = context?.resources?.getString(R.string.we_are_sorry_try_again),
+                textButton = context?.resources?.getString(R.string.retry),
+                onClick = { emit(RetryIntent(getProductText().orEmpty())) }
+            )
+        )
+    }
+
     private fun showLoading() = binding?.apply {
         fragmentComponentLoader.isVisible = true
     }
@@ -133,6 +153,7 @@ class ProductListFragment : Fragment() {
     private fun hideAll() = binding?.apply {
         fragmentProductListThumbnailList.isVisible = false
         fragmentComponentLoader.isVisible = false
+        fragmentProductListErrorTemplate.isVisible = false
     }
 
     private fun emit(intent: ProductUIntent) {

@@ -6,6 +6,6 @@ object WebServiceConfig {
     }
 
     object Timeout {
-        const val CONNECTION_TIME: Long = 60
+        const val CONNECTION_TIME: Long = 20
     }
 }

@@ -13,6 +13,7 @@ import com.meli.freemarket.R
 import com.meli.freemarket.databinding.FragmentProductDetailBinding
 import com.meli.freemarket.features.products.presentation.ProductDetailViewModel
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUIntent
+import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUIntent.RetryUIntent
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUIntent.SeeProductDetailUIntent
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates.DefaultUiState
@@ -20,6 +21,7 @@ import com.meli.freemarket.features.products.presentation.detail.events.ProductD
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates.ErrorUiState
 import com.meli.freemarket.features.products.presentation.detail.events.ProductDetailUiStates.LoadingUiState
 import com.meli.freemarket.features.products.presentation.detail.model.ProductDetail
+import com.meli.uicomponents.components.template.AttrsErrorTemplate
 import com.meli.uicomponents.components.view.AttrsPairTextView
 import com.meli.uicomponents.groupcomponent.pairtextlist.AttrsPairTextListComponent
 import com.squareup.picasso.Picasso
@@ -31,6 +33,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : Fragment() {
@@ -80,7 +83,7 @@ class ProductDetailFragment : Fragment() {
         when (uiStates) {
             DefaultUiState -> {}
             is DisplayProductDetailUiState -> showContent(uiStates.productDetail)
-            ErrorUiState -> {}
+            ErrorUiState -> showError()
             LoadingUiState -> showLoading()
         }
     }
@@ -105,22 +108,31 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun setImage(productDetail: ProductDetail) = binding?.apply {
-        Picasso.get()
-            .load(productDetail.imageUrl)
-            .into(fragmentProductDetailImageView)
+        try {
+            Picasso.get()
+                .load(productDetail.imageUrl)
+                .into(fragmentProductDetailImageView)
+        } catch (e: Exception) {
+            //TODO- Enviar Exception a herramientas de monitoreo de errores como crashlitycs
+        }
     }
 
     private fun setRatingBar() = binding?.apply {
-        val rate = args.productRate.div(10)
-        val decimalFormat = DecimalFormat("#.0")
-        val formattedRate = decimalFormat.format(rate).toString()
-        fragmentProductDetailRate.text = "Rate $formattedRate"
-        fragmentProductDetailRatingBar.rating = rate
-        fragmentProductDetailRatingBar.progressTintList = ColorStateList.valueOf(
-            resources.getColor(
-                com.meli.uicomponents.R.color.ui_primary_blue
+        try {
+            val rate = args.productRate.div(10)
+            val decimalFormat = DecimalFormat("#.0")
+            val formattedRate = decimalFormat.format(rate).toString()
+            fragmentProductDetailRate.text = "Rate $formattedRate"
+            fragmentProductDetailRatingBar.rating = rate
+            fragmentProductDetailRatingBar.progressTintList = ColorStateList.valueOf(
+                resources.getColor(
+                    com.meli.uicomponents.R.color.ui_primary_blue
+                )
             )
-        )
+        } catch (e: Exception) {
+            //TODO- Enviar Exception a herramientas de monitoreo de errores como crashlitycs
+        }
+
     }
 
     private fun setCharacteristicList(productDetail: ProductDetail) = binding?.apply {
@@ -136,6 +148,23 @@ class ProductDetailFragment : Fragment() {
         )
     }
 
+    private fun showError() = binding?.apply {
+        hideAll()
+        fragmentProductDetailErrorTemplate.isVisible = true
+        setErrorTemplate()
+    }
+
+    private fun setErrorTemplate() = binding?.apply {
+        fragmentProductDetailErrorTemplate.setAttributes(
+            attrs = AttrsErrorTemplate(
+                title = context?.resources?.getString(R.string.we_have_a_problem),
+                description = context?.resources?.getString(R.string.we_are_sorry_try_again),
+                textButton = context?.resources?.getString(R.string.retry),
+                onClick = { emit(RetryUIntent(args.productId.orEmpty())) }
+            )
+        )
+    }
+
     private fun showLoading() = binding?.apply {
         fragmentProductDetailLoader.isVisible = true
     }
@@ -143,6 +172,13 @@ class ProductDetailFragment : Fragment() {
     private fun hideAll() = binding?.apply {
         fragmentProductDetailLoader.isVisible = false
         fragmentProductDetailContainer.isVisible = false
+        fragmentProductDetailErrorTemplate.isVisible = false
+    }
+
+    private fun emit(intent: ProductDetailUIntent) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userIntents.emit(intent)
+        }
     }
 
     override fun onDestroyView() {

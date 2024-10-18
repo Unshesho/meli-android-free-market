@@ -50,6 +50,7 @@ class ProductDetailViewModel(
     private fun ProductDetailUIntent.handleIntent(): Flow<ProductDetailUiStates> =
         when (this) {
             is SeeProductDetailUIntent -> getProductDetail(productId)
+            is ProductDetailUIntent.RetryUIntent -> getProductDetail(productId)
         }
 
     private fun getProductDetail(productId: String?) = flow<ProductDetailUiStates> {

@@ -44,20 +44,28 @@ class ThumbnailCardComponent @JvmOverloads constructor(
     }
 
     private fun setRateStars(attrs: AttrsThumbnailCard) = binding?.apply {
-        val rate = attrs.rate?.div(10)
-        val decimalFormat = DecimalFormat("#.0")
-        val formattedRate = decimalFormat.format(rate).toString()
-        componentThumbnailCardRate.text = "Rate $formattedRate"
-        componentThumbnailCardRatingBar.rating = rate ?: 0.0f
-        componentThumbnailCardRatingBar.progressTintList =
-            ColorStateList.valueOf(resources.getColor(R.color.ui_primary_blue))
+        try {
+            val rate = attrs.rate?.div(10)
+            val decimalFormat = DecimalFormat("#.0")
+            val formattedRate = decimalFormat.format(rate).toString()
+            componentThumbnailCardRate.text = "Rate $formattedRate"
+            componentThumbnailCardRatingBar.rating = rate ?: 0.0f
+            componentThumbnailCardRatingBar.progressTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.ui_primary_blue))
+        } catch (e: Exception) {
+            //TODO- Enviar Exception a herramientas de monitoreo de errores como crashlitycs
+        }
     }
 
     private fun setThumbnail(attrs: AttrsThumbnailCard) = binding?.apply {
-        Picasso.get()
-            .load(attrs.imageUrl)
-            .placeholder(R.drawable.ui_ic_load)
-            .error(R.drawable.ui_ic_image_placeholder)
-            .into(componentThumbnailCardImageView)
+        try {
+            Picasso.get()
+                .load(attrs.imageUrl)
+                .placeholder(R.drawable.ui_ic_load)
+                .error(R.drawable.ui_ic_image_placeholder)
+                .into(componentThumbnailCardImageView)
+        } catch (e: Exception) {
+            //TODO- Enviar Exception a herramientas de monitoreo de errores como crashlitycs
+        }
     }
 }
