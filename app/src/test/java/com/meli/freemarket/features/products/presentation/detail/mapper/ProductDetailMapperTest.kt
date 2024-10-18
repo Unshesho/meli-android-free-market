@@ -16,7 +16,7 @@ class ProductDetailMapperTest {
         val productDetail = with(mapper) { remoteProduct.toProductDetail() }
 
         assertEquals(remoteProduct.name, productDetail.name)
-        assertEquals(remoteProduct.image, productDetail.imageUrl)
+        assertEquals(remoteProduct.picture?.first()?.pictureUrl, productDetail.imageUrl)
         assertEquals(remoteProduct.price, productDetail.price)
         assertEquals(remoteProduct.installments?.rate, productDetail.rate)
         assertEquals(

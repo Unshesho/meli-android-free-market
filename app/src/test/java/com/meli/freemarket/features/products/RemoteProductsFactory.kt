@@ -2,6 +2,7 @@ package com.meli.freemarket.features.products
 
 import com.meli.freemarket.features.products.data.remote.model.RemoteCharacteristic
 import com.meli.freemarket.features.products.data.remote.model.RemoteInstallments
+import com.meli.freemarket.features.products.data.remote.model.RemotePicture
 import com.meli.freemarket.features.products.data.remote.model.RemoteProduct
 import com.meli.freemarket.features.products.data.remote.model.RemoteProductList
 import com.meli.utils.testingtools.randomfactory.RandomFactory.generateRandomFloat
@@ -17,10 +18,13 @@ object RemoteProductsFactory {
         id = generateRandomString(),
         name = generateRandomString(),
         image = generateRandomString(),
+        picture = makeListRemotePictures(count),
         price = generateRandomString(),
         installments = makeRemoteInstallments(),
         characteristics = makeListRemoteCharacteristic(count)
     )
+
+    private fun makeListRemotePictures(count: Int) = (1..count).map { makeRemotePicture() }
 
     private fun makeListRemoteProduct(count: Int) = (1..count).map { makeRemoteProduct(count) }
 
@@ -34,5 +38,9 @@ object RemoteProductsFactory {
     private fun makeRemoteCharacteristic() = RemoteCharacteristic(
         characteristic = generateRandomString(),
         characteristicDescription = generateRandomString()
+    )
+
+    private fun makeRemotePicture() = RemotePicture(
+        pictureUrl = generateRandomString()
     )
 }
