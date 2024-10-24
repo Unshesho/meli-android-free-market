@@ -8,20 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.meli.freemarket.R
 import com.meli.freemarket.databinding.ActivityProductsBinding
+import com.meli.freemarket.features.products.di.productsModule
 import com.meli.freemarket.features.products.ui.detail.ProductDetailFragment
 import com.meli.freemarket.features.products.ui.list.ProductListFragment
 import com.meli.uicomponents.components.inputs.AttrsSearchInputText
-import org.koin.androidx.scope.activityScope
-import org.koin.core.component.KoinScopeComponent
-import org.koin.core.scope.Scope
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
+import org.koin.core.module.Module
 
-class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
+class ProductsActivity : AppCompatActivity() {
     private var binding: ActivityProductsBinding? = null
-
-    override val scope: Scope by activityScope()
+    private var productsModule: Module = productsModule()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupDependencies()
         if (binding == null) binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding?.root)
     }
@@ -58,8 +59,22 @@ class ProductsActivity : AppCompatActivity(), KoinScopeComponent {
     private fun getCurrentFragment(): Fragment? =
         supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.firstOrNull { it.isVisible }
 
+    private fun setupDependencies() {
+        try {
+            loadKoinModules(productsModule)
+        } catch (e: Exception) {
+        }
+    }
+    private fun unloadDependencies() {
+        try {
+            unloadKoinModules(productsModule)
+        } catch (e: Exception) {
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        unloadDependencies()
         binding = null
     }
 
